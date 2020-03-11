@@ -1,0 +1,62 @@
+#
+# This is a `remake`-driven project, and this is its Makefile.
+#
+# Created by David Holstius <dholstius@baaqmd.gov> on 2020-03-10.
+#
+
+packages:
+  - maketools
+  - inventory
+  - usethis
+
+sources:
+
+  - "data-raw/make_ECDMS_gas_county_data.R"
+  - "data-raw/make_ECDMS_gas_plan_data.R"
+  - "data-raw/make_ECDMS_electric_county_data.R"
+  - "data-raw/make_ECDMS_electric_plan_data.R"
+
+targets:
+
+  all:
+    depends:
+      - data/ECDMS_gas_county_data.rda
+      - data/ECDMS_gas_plan_data.rda
+      - data/ECDMS_electric_county_data.rda
+      - data/ECDMS_electric_plan_data.rda
+
+  data/ECDMS_gas_county_data.rda:
+    command: use_data(
+      ECDMS_gas_county_data,
+      overwrite = TRUE)
+
+  data/ECDMS_gas_plan_data.rda:
+    command: use_data(
+      ECDMS_gas_plan_data,
+      overwrite = TRUE)
+
+  data/ECDMS_electric_county_data.rda:
+    command: use_data(
+      ECDMS_electric_county_data,
+      overwrite = TRUE)
+
+  data/ECDMS_electric_plan_data.rda:
+    command: use_data(
+      ECDMS_electric_plan_data,
+      overwrite = TRUE)
+
+  ECDMS_gas_county_data:
+    command: make_ECDMS_gas_county_data(
+      "data-raw/CEC/ECDMS/2019-10-03/GasByCounty-20191003.xlsx")
+
+  ECDMS_gas_plan_data:
+    command: make_ECDMS_gas_plan_data(
+      "data-raw/CEC/ECDMS/2019-10-03/GasByPlan-20191003.xlsx")
+
+  ECDMS_electric_county_data:
+    command: make_ECDMS_electric_county_data(
+      "data-raw/CEC/ECDMS/2019-10-03/ElectricityByCounty-20191003.xlsx")
+
+  ECDMS_electric_plan_data:
+    command: make_ECDMS_electric_plan_data(
+      "data-raw/CEC/ECDMS/2019-10-03/ElectricityByPlan-20191003.xlsx")
