@@ -25,7 +25,7 @@ make_ECDMS_electric_county_data <- function (
   tidied <-
     reshaped %>%
     filter(
-      sector != "Total Usage") %>%
+      sector != "Total") %>%
     mutate(
       county = str_to_title(county)) %>%
     mutate(

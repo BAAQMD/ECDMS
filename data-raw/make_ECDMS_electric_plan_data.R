@@ -26,6 +26,9 @@ make_ECDMS_electric_plan_data <- function (
     reshaped %>%
     filter(
       sector != "Total Usage") %>%
+    mutate_at(
+      vars(year),
+      ~ CY(elide_year(.))) %>%
     mutate(
       tput_unit = "GWh")
 

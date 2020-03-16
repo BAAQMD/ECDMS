@@ -1,7 +1,7 @@
 Package: ECDMS
 Type: Package
 Title: Provides Harvested CEC ECDMS Data
-Version: 2020.03.11
+Version: 2020.03.16
 Author: David Holstius <dholstius@baaqmd.gov>
 Maintainer: David Holstius <dholstius@baaqmd.gov>
 Description: More about what it does (maybe more than one line)
