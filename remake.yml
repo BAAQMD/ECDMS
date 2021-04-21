@@ -47,16 +47,16 @@ targets:
 
   ECDMS_gas_county_data:
     command: make_ECDMS_gas_county_data(
-      "data-raw/CEC/ECDMS/2019-10-03/GasByCounty-20191003.xlsx")
+      "data-raw/CEC/ECDMS/2021-04-21/GasByCounty.csv")
 
   ECDMS_gas_plan_data:
     command: make_ECDMS_gas_plan_data(
-      "data-raw/CEC/ECDMS/2019-10-03/GasByPlan-20191003.xlsx")
+      "data-raw/CEC/ECDMS/2021-04-21/GasByPlan.csv")
 
   ECDMS_electric_county_data:
     command: make_ECDMS_electric_county_data(
-      "data-raw/CEC/ECDMS/2019-10-03/ElectricityByCounty-20191003.xlsx")
+      "data-raw/CEC/ECDMS/2021-04-21/ElectricityByCounty.csv")
 
   ECDMS_electric_plan_data:
     command: make_ECDMS_electric_plan_data(
-      "data-raw/CEC/ECDMS/2019-10-03/ElectricityByPlan-20191003.xlsx")
+      "data-raw/CEC/ECDMS/2021-04-21/ElectricityByPlan.csv")
