@@ -1,10 +1,11 @@
 make_ECDMS_electric_county_data <- function (
-  xlsx_path
+  path
 ) {
 
   raw_data <-
-    read_excel(
-      xlsx_path)
+    tbltools::read_tbl(
+      path,
+      verbose = TRUE)
 
   names(raw_data)[1] <-
     "County" # fix double-quoted column name
