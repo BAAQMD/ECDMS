@@ -5,12 +5,13 @@
 #' 0.005302 metric tons CO2/therm (ref: https://www.epa.gov/energy/ghg-equivalencies-calculator-calculations-and-references)
 #'
 make_ECDMS_gas_county_data <- function (
-  xlsx_path
+  path
 ) {
 
   raw_data <-
-    read_excel(
-      xlsx_path)
+    tbltools::read_tbl(
+      path,
+      verbose = TRUE)
 
   names(raw_data)[1] <-
     "County" # fix double-quoted column name
@@ -36,12 +37,14 @@ make_ECDMS_gas_county_data <- function (
     spread(
       sector,
       tput_qty) %>%
+    mutate(
+      Ratio = (`Non-Residential` + `Residential`) / Total,
+      Diff = `Non-Residential` + `Residential` - Total) %>%
     ensurer::ensure(
-      all_true(
-        ((.$`Non-Residential` + .$`Residential`) / .$`Total`) %>%
-          between(0.999, 1.001))) %>%
+      all(abs(.$Diff) < 0.1, na.rm = TRUE),
+      all(abs(log(.$Ratio)) < 0.1, na.rm = TRUE)) %>%
     drop_vars(
-      `Total`) %>%
+      Total, Ratio, Diff) %>%
     gather(
       sector,
       tput_qty,
